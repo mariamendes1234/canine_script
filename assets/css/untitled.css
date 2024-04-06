@@ -1,0 +1,19 @@
+.portfolio .portfolio-item .portfolio-item-caption {
+  transition: all ease .5s;
+  opacity: 0;
+  background-color: #cda66b;
+}
+
+.text-white {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-secondary), var(--bs-text-opacity)) !important;
+}
+
+#mainNav .navbar-nav li.nav-item a.nav-link:hover {
+  color: #cda66b;
+}
+
+a:focus, a:hover, a:active {
+  color: #cda66b;
+}
+
