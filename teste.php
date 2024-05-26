@@ -11,7 +11,7 @@
 <body>
     <div class="container mt-5">
         <h2 class="text-center">Adicionar Pergunta</h2>
-        <form id="questionForm" method="post" action="submit.php">
+        <form id="questionForm" method="post" action="inserir.php">
             <div class="form-group">
                 <label for="name">Nome</label>
                 <input type="text" class="form-control" id="name" name="name" required>
