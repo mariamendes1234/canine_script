@@ -28,7 +28,7 @@ container = database.create_container_if_not_exists(
 def form():
     return render_template('form.html')
 
-@app.route(' https://api.github.com/repos/mariamendes1234/canine_script/contents/server.py', methods=['POST'])
+@app.route('/addcostumer', methods=['POST'])
 def add_customer():
     name = request.form['name']
     age = int(request.form['age'])
