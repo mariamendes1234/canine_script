@@ -1,26 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Adicionar Cliente</title>
+    <title>Formulário</title>
 </head>
 <body>
-    <h1>Adicionar Cliente</h1>
-    <form action="/addcostumer" method="post">
-        <label for="name">Nome:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
-        <label for="age">Idade:</label><br>
-        <input type="number" id="age" name="age" required><br><br>
-        <label for="city">Cidade:</label><br>
-        <input type="text" id="city" name="city" required><br><br>
-        <label for="order1_id">ID do Pedido 1:</label><br>
-        <input type="text" id="order1_id" name="order1_id" required><br><br>
-        <label for="order1_amount">Valor do Pedido 1:</label><br>
-        <input type="number" step="0.01" id="order1_amount" name="order1_amount" required><br><br>
-        <label for="order2_id">ID do Pedido 2:</label><br>
-        <input type="text" id="order2_id" name="order2_id" required><br><br>
-        <label for="order2_amount">Valor do Pedido 2:</label><br>
-        <input type="number" step="0.01" id="order2_amount" name="order2_amount" required><br><br>
-        <input type="submit" value="Adicionar Cliente">
+    <form action="/" method="post">
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome"><br>
+        <label for="idade">Idade:</label><br>
+        <input type="number" id="idade" name="idade"><br>
+        <label for="pergunta">Pergunta:</label><br>
+        <input type="text" id="pergunta" name="pergunta"><br>
+        <input type="submit" value="Enviar">
     </form>
 </body>
 </html>
