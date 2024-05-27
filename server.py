@@ -7,7 +7,7 @@ app = Flask(__name__)
 ENDPOINT = 'https://tpcloudcosmosdb.documents.azure.com:443/'
 KEY = 'K83GDK99DqAM14w7fhrm3OylFjh4zeqHUOTefXNxfqYMNvyBzlQ8MQ3fUvwOTEbx7wVMrKMTaE65ACDbMHJy4Q=='
 DATABASE_ID = 'basededados'
-CONTAINER_ID = 'Foruns'
+CONTAINER_ID = 'Perguntas'
 
 # Inicializa o cliente do Cosmos DB
 client = CosmosClient(ENDPOINT, KEY)
