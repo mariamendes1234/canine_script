@@ -95,33 +95,32 @@
                     </form>
                     <script>
                         document.getElementById('contactForm').addEventListener('submit', async function(event) {
-                        event.preventDefault(); // Evita o envio padrão do formulário
+                            event.preventDefault(); // Evita o envio padrão do formulário
 
                         // Captura os dados do formulário
-                        const formData = new FormData(event.target);
-                        const data = Object.fromEntries(formData.entries());
+                            const formData = new FormData(event.target);
+                            const data = Object.fromEntries(formData.entries());
 
                         // Envia os dados para a Azure Function
-                        try {
-                        const response = await fetch('https://functionappfixedecloud123.azurewebsites.net', {
-                             method: 'POST',
-                             headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
+                            try {
+                                const response = await fetch('https://functionappfixedecloud123.azurewebsites.net', {
+                                    method: 'POST',
+                                     headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(data)
+                                });
+
+                                if (response.ok) {
+                                    alert('Dados enviados com sucesso!');
+                                }else {
+                                    alert('Erro ao enviar dados.');
+                                }
+                            } catch (error) {
+                                alert('Erro ao enviar dados: ' + error.message);
+                            }
                         });
-
-                        if (response.ok) {
-                            alert('Dados enviados com sucesso!');
-                        } else {
-                            alert('Erro ao enviar dados.');
-                        }
-                        } catch (error) {
-                        alert('Erro ao enviar dados: ' + error.message);
-                        }
-                    });
-                </script>
-
+                    </script>
                 </div>
             </div>
         </div>
