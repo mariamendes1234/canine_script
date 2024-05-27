@@ -1,5 +1,5 @@
-from flask import Flask
-
+from flask import Flask, render_template, request, url_for
+from azure.cosmos import CosmosClient
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
