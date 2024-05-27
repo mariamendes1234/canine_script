@@ -21,9 +21,8 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item mx-0 mx-lg-1" style="color: #cda66b;"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="index-1.html">Fóruns</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://trabalhinodecloudfixe.norwayeast.cloudapp.azure.com/">Sobre nós</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://trabalhinodecloudfixe123.norwayeast.cloudapp.azure.com/">Sobre nós</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="index.html">Contactos</a></li>
-                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="teste.html">TesteBD1</a></li>
                 </ul>
             </div>
         </div>
@@ -94,6 +93,35 @@
                         <div id="success"></div>
                         <div><button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Enviar</button></div>
                     </form>
+                    <script>
+                        document.getElementById('contactForm').addEventListener('submit', async function(event) {
+                        event.preventDefault(); // Evita o envio padrão do formulário
+
+                        // Captura os dados do formulário
+                        const formData = new FormData(event.target);
+                        const data = Object.fromEntries(formData.entries());
+
+                        // Envia os dados para a Azure Function
+                        try {
+                        const response = await fetch('https://functionappfixedecloud123.azurewebsites.net', {
+                             method: 'POST',
+                             headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                        });
+
+                        if (response.ok) {
+                            alert('Dados enviados com sucesso!');
+                        } else {
+                            alert('Erro ao enviar dados.');
+                        }
+                        } catch (error) {
+                        alert('Erro ao enviar dados: ' + error.message);
+                        }
+                    });
+                </script>
+
                 </div>
             </div>
         </div>
