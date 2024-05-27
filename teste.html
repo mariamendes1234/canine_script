@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,28 +15,31 @@
     </form>
 
     <script>
-        document.getElementById('meuFormulario').addEventListener('submit', function(event) {
-
+        document.getElementById('meuFormulario').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
 
             // Captura os dados do formulário
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData.entries());
 
-            // Converte os dados para JSON
-            const jsonData = JSON.stringify(data, null, 2);
+            // Envia os dados para a Azure Function
+            try {
+                const response = await fetch('URL_DA_SUA_AZURE_FUNCTION', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
 
-            // Cria um blob com os dados JSON
-            const blob = new Blob([jsonData], { type: 'application/json' });
-
-            // Cria um link para download
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'dados.json';
-            a.click();
-
-            // Libera o URL do objeto
-            URL.revokeObjectURL(url);
+                if (response.ok) {
+                    alert('Dados enviados com sucesso!');
+                } else {
+                    alert('Erro ao enviar dados.');
+                }
+            } catch (error) {
+                alert('Erro ao enviar dados: ' + error.message);
+            }
         });
     </script>
 </body>
