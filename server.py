@@ -40,6 +40,7 @@ database = client.get_database_client(DATABASE_ID)
 container = database.get_container_client(CONTAINER_ID)
 
 @app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def insert_data():
     if request.method == 'POST':
         # Obtém os dados do formulário
@@ -62,7 +63,7 @@ def insert_data():
 
     # Renderiza o formulário para a entrada de dados
     return render_template('form.html')
-
+    
         # Insere os dados no Cosmos DB
         container.upsert_item(data)
 
