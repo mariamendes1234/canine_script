@@ -38,7 +38,7 @@ def add_customer():
     order2_id = request.form['order2_id']
     order2_amount = float(request.form['order2_amount'])
     
-    customer = {
+    Items = {
         "id": str(uuid.uuid4()),  # Gera um UUID como ID do documento
         "name": name,
         "age": age,
