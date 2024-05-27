@@ -4,7 +4,7 @@ from azure.cosmos import CosmosClient, PartitionKey, exceptions
 app = Flask(__name__)
 
 url = "https://tpcloudcosmosdb.documents.azure.com:443/"
-key = 'K83GDK99DqAM14w7fhrm3OylFjh4zeqHUOTefXNxfqYMNvyBzlQ8MQ3fUvwOTEbx7wVMrKMTaE65ACDbMHJy4Q=='
+key = K83GDK99DqAM14w7fhrm3OylFjh4zeqHUOTefXNxfqYMNvyBzlQ8MQ3fUvwOTEbx7wVMrKMTaE65ACDbMHJy4Q==
 client = CosmosClient(url, credential=key)
 database_name = 'basededados'
 database = client.get_database_client(database_name)
