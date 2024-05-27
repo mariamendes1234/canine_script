@@ -1,4 +1,3 @@
-
 from flask import Flask, request, render_template
 from azure.cosmos import CosmosClient, PartitionKey, exceptions
 import uuid
@@ -28,7 +27,7 @@ container = database.create_container_if_not_exists(
 def form():
     return render_template('form.html')
 
-@app.route('/addcostumer', methods=['POST'])
+@app.route('/addcustomer', methods=['POST'])
 def add_customer():
     name = request.form['name']
     age = int(request.form['age'])
@@ -37,10 +36,8 @@ def add_customer():
     order1_amount = float(request.form['order1_amount'])
     order2_id = request.form['order2_id']
     order2_amount = float(request.form['order2_amount'])
-    
-    Merda = []
-    for item in items:
-        Merda = {
+
+    customer = {
         "id": str(uuid.uuid4()),  # Gera um UUID como ID do documento
         "name": name,
         "age": age,
@@ -56,6 +53,9 @@ def add_customer():
         return f"Item criado com sucesso. ID do documento: {customer['id']}"
     except exceptions.CosmosHttpResponseError as e:
         return f"Erro ao criar o item: {str(e)}"
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
