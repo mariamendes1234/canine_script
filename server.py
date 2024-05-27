@@ -1,54 +1,38 @@
-from flask import Flask, request, render_template
-from azure.cosmos import CosmosClient, PartitionKey, exceptions
-import uuid
+from flask import Flask, render_template, request
+from azure.cosmos import CosmosClient
 
 app = Flask(__name__)
 
 # Configurações do Cosmos DB
-endpoint = "https://tpcloudcosmosdb.documents.azure.com:443/"
-key = "K83GDK99DqAM14w7fhrm3OylFjh4zeqHUOTefXNxfqYMNvyBzlQ8MQ3fUvwOTEbx7wVMrKMTaE65ACDbMHJy4Q=="
-database_name = "basededados"
-container_name = "Foruns"
+ENDPOINT = 'https://tpcloudcosmosdb.documents.azure.com:443/'
+KEY = 'K83GDK99DqAM14w7fhrm3OylFjh4zeqHUOTefXNxfqYMNvyBzlQ8MQ3fUvwOTEbx7wVMrKMTaE65ACDbMHJy4Q=='
+DATABASE_ID = 'basededados'
+CONTAINER_ID = 'Foruns'
 
 # Inicializa o cliente do Cosmos DB
-client = CosmosClient(endpoint, key)
+client = CosmosClient(ENDPOINT, KEY)
+database = client.get_database_client(DATABASE_ID)
+container = database.get_container_client(CONTAINER_ID)
 
-# Obtém ou cria o banco de dados
-database = client.get_database_client(database_name)
+@app.route('/', methods=['GET', 'POST'])
+def insert_data():
+    if request.method == 'POST':
+        # Obtém os dados do formulário
+        nome = request.form['nome']
+        idade = request.form['idade']
+        pergunta = request.form['pergunta']
 
-# Obtém ou cria o contêiner
-container = database.get_container_client(container_name)
+        # Cria um dicionário com os dados
+        data = {
+            'nome': nome,
+            'idade': idade,
+            'pergunta': pergunta
+        }
 
-@app.route('/')
-def form():
+        # Insere os dados no Cosmos DB
+        container.upsert_item(data)
+
+        return "Dados inseridos com sucesso!"
+
+    # Renderiza o formulário para a entrada de dados
     return render_template('form.html')
-
-@app.route('/addcustomer', methods=['POST'])
-def add_customer():
-    name = request.form['name']
-    age = int(request.form['age'])
-    city = request.form['city']
-    order1_id = request.form['order1_id']
-    order1_amount = float(request.form['order1_amount'])
-    order2_id = request.form['order2_id']
-    order2_amount = float(request.form['order2_amount'])
-
-    customer = {
-        "id": str(uuid.uuid4()),  # Gera um UUID como ID do documento
-        "name": name,
-        "age": age,
-        "city": city,
-        "orders": [
-            {"orderId": order1_id, "amount": order1_amount},
-            {"orderId": order2_id, "amount": order2_amount}
-        ]
-    }
-
-    try:
-        container.create_item(body=customer)
-        return f"Item criado com sucesso. ID do documento: {customer['id']}"
-    except exceptions.CosmosHttpResponseError as e:
-        return f"Erro ao criar o item: {str(e)}"
-
-if __name__ == '__main__':
-    app.run(debug=True)
