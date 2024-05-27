@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 from azure.cosmos import CosmosClient, PartitionKey, exceptions
+import uuid
 
 app = Flask(__name__)
 
@@ -51,7 +52,7 @@ def add_customer():
         container.create_item(body=customer)
         return f"Item criado com sucesso. ID do documento: {customer['id']}"
     except exceptions.CosmosHttpResponseError as e:
-        return f"Erro ao criar o item: {e.message}"
+        return f"Erro ao criar o item: {str(e)}"
 
 if __name__ == '__main__':
     app.run(debug=True)
