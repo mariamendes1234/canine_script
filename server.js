@@ -7,7 +7,7 @@ const { CosmosClient } = require('@azure/cosmos');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const cosmosClient = new CosmosClient(process.env.COSMOS_DB_CONNECTION_STRING);
+const cosmosClient = new CosmosClient(process.env.https://tpcloudcosmosdb.documents.azure.com:443/);
 const database = cosmosClient.database('basededados');
 const container = database.container('Foruns');
 
