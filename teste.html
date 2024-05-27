@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Adicionar Cliente</title>
+</head>
 <body>
-    <form action=" https://api.github.com/repos/mariamendes1234/canine_script/contents/server.py" method="post">
-        <label for="fname">First name:</label><br>
-        <input type="text" id="fname" name="fname"><br>
-        <label for="lname">Last name:</label><br>
-        <input type="text" id="lname" name="lname"><br><br>
-        <input type="submit" value="Submit">
+    <h1>Adicionar Cliente</h1>
+    <form action="/add_customer" method="post">
+        <label for="name">Nome:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="age">Idade:</label><br>
+        <input type="text" id="age" name="age"><br><br>
+        <label for="city">Cidade:</label><br>
+        <input type="text" id="city" name="city"><br><br>
+        <label for="order1_id">ID do Pedido 1:</label><br>
+        <input type="text" id="order1_id" name="order1_id"><br><br>
+        <label for="order1_amount">Valor do Pedido 1:</label><br>
+        <input type="text" id="order1_amount" name="order1_amount"><br><br>
+        <label for="order2_id">ID do Pedido 2:</label><br>
+        <input type="text" id="order2_id" name="order2_id"><br><br>
+        <label for="order2_amount">Valor do Pedido 2:</label><br>
+        <input type="text" id="order2_amount" name="order2_amount"><br><br>
+        <input type="submit" value="Adicionar Cliente">
     </form>
 </body>
 </html>
