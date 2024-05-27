@@ -1,3 +1,4 @@
+
 from flask import Flask, request, render_template
 from azure.cosmos import CosmosClient, PartitionKey, exceptions
 import uuid
@@ -27,7 +28,7 @@ container = database.create_container_if_not_exists(
 def form():
     return render_template('form.html')
 
-@app.route('/add_customer', methods=['POST'])
+@app.route(' https://api.github.com/repos/mariamendes1234/canine_script/contents/server.py', methods=['POST'])
 def add_customer():
     name = request.form['name']
     age = int(request.form['age'])
