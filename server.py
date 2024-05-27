@@ -13,15 +13,11 @@ container_name = "Foruns"
 # Inicializa o cliente do Cosmos DB
 client = CosmosClient(endpoint, key)
 
-# Cria o banco de dados, se não existir
-database = client.create_database_if_not_exists(id=database_name)
+# Obtém ou cria o banco de dados
+database = client.get_database_client(database_name)
 
-# Cria o container, se não existir
-container = database.create_container_if_not_exists(
-    id=container_name,
-    partition_key=PartitionKey(path="/id"),
-    offer_throughput=400
-)
+# Obtém ou cria o contêiner
+container = database.get_container_client(container_name)
 
 @app.route('/')
 def form():
